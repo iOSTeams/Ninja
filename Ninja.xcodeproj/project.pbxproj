@@ -14,7 +14,6 @@
 		31CF3AA81CAB4D9B00B79041 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3AA61CAB4D9B00B79041 /* Main.storyboard */; };
 		31CF3AAD1CAB4D9B00B79041 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3AAB1CAB4D9B00B79041 /* LaunchScreen.storyboard */; };
 		31CF3AB51CAB4E6300B79041 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3AB41CAB4E6300B79041 /* Images.xcassets */; };
-		31CF3AB71CAB4E6C00B79041 /* tapToPlay.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3AB61CAB4E6C00B79041 /* tapToPlay.jpg */; };
 		31CF3ABB1CAB593700B79041 /* beat1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3ABA1CAB593700B79041 /* beat1.mp3 */; };
 		31CF3ABD1CAB593E00B79041 /* boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3ABC1CAB593E00B79041 /* boom.mp3 */; };
 		31CF3ABF1CAB5F1A00B79041 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF3ABE1CAB5F1A00B79041 /* GameOverScene.swift */; };
@@ -30,7 +29,6 @@
 		31CF3AAC1CAB4D9B00B79041 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		31CF3AAE1CAB4D9B00B79041 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31CF3AB41CAB4E6300B79041 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		31CF3AB61CAB4E6C00B79041 /* tapToPlay.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tapToPlay.jpg; sourceTree = "<group>"; };
 		31CF3ABA1CAB593700B79041 /* beat1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beat1.mp3; sourceTree = "<group>"; };
 		31CF3ABC1CAB593E00B79041 /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
 		31CF3ABE1CAB5F1A00B79041 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
@@ -76,7 +74,6 @@
 				31CF3AA61CAB4D9B00B79041 /* Main.storyboard */,
 				31CF3AAB1CAB4D9B00B79041 /* LaunchScreen.storyboard */,
 				31CF3AAE1CAB4D9B00B79041 /* Info.plist */,
-				31CF3AB61CAB4E6C00B79041 /* tapToPlay.jpg */,
 				31CF3AB41CAB4E6300B79041 /* Images.xcassets */,
 			);
 			path = Ninja;
@@ -147,7 +144,6 @@
 				31CF3ABD1CAB593E00B79041 /* boom.mp3 in Resources */,
 				31CF3AAD1CAB4D9B00B79041 /* LaunchScreen.storyboard in Resources */,
 				31CF3AA81CAB4D9B00B79041 /* Main.storyboard in Resources */,
-				31CF3AB71CAB4E6C00B79041 /* tapToPlay.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +307,7 @@
 				31CF3AB31CAB4D9B00B79041 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -15,14 +15,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var boom = AVAudioPlayer()
     
         let ninjaCategory:UInt32 = 0x1 << 0
-        let fireBallCategory:UInt32 = 0x1 << 1
+        let fireballCategory:UInt32 = 0x1 << 1
         let floorCategory:UInt32 = 0x1 << 2
         let SkyCategory:UInt32 = 0x1 << 3
-        let waterBallCategory:UInt32 = 0x1 << 4
+        let waterballCategory:UInt32 = 0x1 << 4
         
         let ninjaCategoryName = "ninja"
-        let fireBallCategoryName = "fireBall"
-        let waterBallCategoryName = "waterBall"
+        let fireballCategoryName = "fireBall"
+        let waterballCategoryName = "waterBall"
         let floorCategoryName = "floor"
         let skyCategoryName = "sky"
 
@@ -32,6 +32,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var fingerIsOnFireBall = false
         var fingerIsOnNinja = false
         var ninjaIsDynamic = false
+    
+        var ninja: SKSpriteNode = SKSpriteNode()
+    
 
         override init(size: CGSize) {
             super.init(size:size)
@@ -78,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ninja.yScale = 0.8
             //Set Fireball Physics******************************************************************
             let fireBall = SKSpriteNode(imageNamed: "fireball")
-            fireBall.name = fireBallCategoryName
+            fireBall.name = fireballCategoryName
             fireBall.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
             //self.addChild(fireBall)
             fireBall.physicsBody = SKPhysicsBody(rectangleOfSize: fireBall.size)
@@ -95,14 +98,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //collision************************************************************************************
             floor.physicsBody?.categoryBitMask = floorCategory
             ninja.physicsBody?.categoryBitMask = ninjaCategory
-            fireBall.physicsBody?.categoryBitMask = fireBallCategory
+            fireBall.physicsBody?.categoryBitMask = fireballCategory
             
             
-            ninja.physicsBody?.contactTestBitMask =  fireBallCategory | floorCategory
+            
+            ninja.physicsBody?.contactTestBitMask =  fireballCategory | floorCategory
         }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if gameStarted == false{
+        let initTouch = touches.first! as UITouch
+        let initTouchLocation = initTouch.locationInNode(self)
+        
+        if !gameStarted && initTouchLocation.x  < self.frame.width/2 {
             gameStarted = true
             
             let spawn = SKAction.runBlock({
@@ -137,10 +144,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        }
         
         
-        if touchLocation.x  < self.frame.width/2 {
+        if touchLocation.x  < self.frame.width/2 && gameStarted {
             fingerIsOnNinja = true
         } else if touchLocation.x  > self.frame.width/2 {
-            shoot()
+            
+            let waterball:SKSpriteNode = SKSpriteNode(imageNamed: "waterball")
+            let location:CGPoint = touch.locationInNode(self)
+//            waterball.position = ninja.position
+            
+            if let ninja = self.childNodeWithName(ninjaCategoryName) {
+            waterball.position = CGPoint(x: ninja.position.x + 40, y: ninja.position.y)
+            }
+//            CGPoint(x: ship.position.x, y: ship.position.y + ship.frame.size.height - bullet.frame.size.height / 2)
+            //waterball.position = /*ninja.position*/ CGPointMake(0, self.frame.size.height/2)
+            waterball.xScale = 0.1
+            waterball.yScale = 0.1
+            
+            waterball.physicsBody = SKPhysicsBody(circleOfRadius: waterball.size.width/2)
+            waterball.physicsBody?.dynamic = true
+            waterball.physicsBody?.contactTestBitMask = waterballCategory
+            waterball.physicsBody?.contactTestBitMask = fireballCategory
+            
+            //waterball.physicsBody?.collisionBitMask = 0
+            waterball.physicsBody?.contactTestBitMask = ninjaCategory
+            //waterball.physicsBody?.collisionBitMask = 0
+            waterball.physicsBody?.usesPreciseCollisionDetection = true
+
+            
+            var offset:CGPoint = vecSub(location, b: waterball.position)
+            
+//            if ( offset.y < 0 ) {
+//                return
+//            }
+//            
+            
+            self.addChild(waterball)
+            
+            var direction:CGPoint = vecNormalize(offset)
+            
+            var shotLength:CGPoint = vecMulti(direction, b: 1000)
+            
+            var finalDestination:CGPoint = vecAdd(shotLength, b: waterball.position)
+            
+            let velocity = 581/1
+            
+            let moveDuration:Float = Float(self.size.width) / Float(velocity)
+            
+            
+            
+            let move = SKAction.moveTo(finalDestination, duration: NSTimeInterval(moveDuration))
+            let remove = SKAction.removeFromParent()
+            
+            
+            waterball.runAction(SKAction.sequence([move,remove]))
         }
 
         if fingerIsOnNinja {
@@ -152,6 +208,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 fingerIsOnNinja = false
             }
         }
+        
+        //Play music
+//        self.runAction(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
+        
+
     }
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -194,7 +255,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.view?.presentScene(lossScene)
         }
         
-        if firstBody.categoryBitMask == ninjaCategory && secondBody.categoryBitMask == fireBallCategory {
+        if firstBody.categoryBitMask == ninjaCategory && secondBody.categoryBitMask == fireballCategory {
             
             secondBody.node?.removeFromParent()
             print ("Burned")
@@ -211,6 +272,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            }
         }
         
+        if firstBody.categoryBitMask == waterballCategory && secondBody.categoryBitMask == fireballCategory {
+            print ("UAU")
+  
+        }
+        
     }
 
     func createObstacles() {
@@ -218,21 +284,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let topFire = SKSpriteNode(imageNamed: "fireball")
         let bottomFire = SKSpriteNode(imageNamed: "fireball")
         
-        topFire.name = fireBallCategoryName
+        topFire.name = fireballCategoryName
         topFire.xScale = 0.5
-        topFire.physicsBody = SKPhysicsBody(circleOfRadius: self.size.height/11, center: CGPointMake(topFire.position.x - 30, topFire.position.y - 10))
+        topFire.physicsBody = SKPhysicsBody(circleOfRadius: self.size.height/10, center: CGPointMake(topFire.position.x - 30, topFire.position.y - 10))
         topFire.physicsBody?.dynamic = false
         topFire.position = CGPointMake(self.frame.size.width + 100, self.frame.size.height/2)
-        topFire.physicsBody?.categoryBitMask = fireBallCategory
+        topFire.physicsBody?.categoryBitMask = fireballCategory
         
-        
-        bottomFire.name = fireBallCategoryName
+        bottomFire.name = fireballCategoryName
         bottomFire.xScale = 0.5
-        bottomFire.physicsBody = SKPhysicsBody(circleOfRadius: self.size.height/11, center: CGPointMake(bottomFire.position.x - 30, bottomFire.position.y - 10))
+        bottomFire.physicsBody = SKPhysicsBody(circleOfRadius: self.size.height/10, center: CGPointMake(bottomFire.position.x - 30, bottomFire.position.y - 10))
         bottomFire.physicsBody?.dynamic = false
         bottomFire.position = CGPointMake(self.frame.size.width + 100, self.frame.size.height/4)
-        bottomFire.physicsBody?.categoryBitMask = fireBallCategory
-        
+        bottomFire.physicsBody?.categoryBitMask = fireballCategory
         
         firePair.addChild(topFire)
         firePair.addChild(bottomFire)
@@ -241,8 +305,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(firePair)
     }
     
-    func shoot() {
-        
+    
+    func vecAdd(a:CGPoint, b:CGPoint)->CGPoint {
+        return CGPointMake(a.x + b.x, a.y + b.y)
+    }
+    
+    func vecSub(a:CGPoint, b:CGPoint)->CGPoint{
+        return CGPointMake(a.x - b.x, a.y - b.y)
+    }
+    
+    func vecMulti(a:CGPoint, b:CGFloat)->CGPoint{
+        return CGPointMake(a.x * b, a.y * b)
+    }
+    
+    func vecLength(a:CGPoint)->CGFloat{
+        return CGFloat(sqrt(CGFloat(a.x)*CGFloat(a.x)+CGFloat(a.y)*CGFloat(a.y)))
+    }
+    
+    func vecNormalize(a:CGPoint)->CGPoint{
+        var length: CGFloat = vecLength(a)
+        return CGPointMake(a.x / length, a.y / length)
     }
     
     required init?(coder aDecoder:NSCoder) {

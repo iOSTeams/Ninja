@@ -15,13 +15,15 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillLayoutSubviews() {
+    //override func viewWillLayoutSubviews() {
+    
+    override func viewDidLayoutSubviews() {
         let skView = self.view as! SKView
-        
-        skView.showsFPS = true
-        skView.showsNodeCount = true
-        skView.showsPhysics = true
-        
+//
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
+//        skView.showsPhysics = true
+//        
         let gameScene = GameScene(size: skView.bounds.size)
         gameScene.backgroundColor =  SKColor.whiteColor()
         gameScene.scaleMode = .AspectFill

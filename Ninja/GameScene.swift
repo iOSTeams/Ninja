@@ -235,14 +235,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let lossScene = GameOverScene(size: self.size, playerWon: false)
             boom.play()
             backgroundMusicPlayer.stop()
+            removeAllChildren()
+            removeAllActions()
             self.view?.presentScene(lossScene)
             playerScore = 0
         }
         
         if firstBody.categoryBitMask == ninjaCategory && secondBody.categoryBitMask == fireballCategory {
             let lossScene = GameOverScene(size: self.size, playerWon: false)
-            boom.play()
             backgroundMusicPlayer.stop()
+            removeAllChildren()
+            removeAllActions()
             self.view?.presentScene(lossScene)
             playerScore = 0
         }

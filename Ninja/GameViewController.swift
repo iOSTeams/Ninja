@@ -15,11 +15,11 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    //override func viewWillLayoutSubviews() {
+    //override func viewWillLayoutSubviews() { //caused memory issues
     
     override func viewDidLayoutSubviews() {
         let skView = self.view as! SKView
-//
+
 //        skView.showsFPS = true
 //        skView.showsNodeCount = true
 //        skView.showsPhysics = true

@@ -22,6 +22,7 @@ class GameOverScene: SKScene {
         
         boom = try! AVAudioPlayer(contentsOfURL: boomURL)
         boom.prepareToPlay()
+        boom.play()
         //let background = SKSpriteNode(imageNamed: "bg")
         //background.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame))
         //self.addChild(background)

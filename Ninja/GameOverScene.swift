@@ -15,7 +15,7 @@ class GameOverScene: SKScene {
     
     var boom = AVAudioPlayer()
     let boomURL: NSURL = NSBundle.mainBundle().URLForResource("boom", withExtension: "mp3")!
-   
+    
     
     init (size:CGSize, playerWon: Bool) {
         super.init(size: size)
@@ -39,7 +39,7 @@ class GameOverScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        boom.play()
+
         let breakOutGameScene = GameScene(size: self.size)
         
         

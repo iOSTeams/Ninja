@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3153E5541CAE904D00223643 /* StartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3153E5531CAE904D00223643 /* StartScene.swift */; };
 		31CF3A9F1CAB4D9B00B79041 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF3A9E1CAB4D9B00B79041 /* AppDelegate.swift */; };
 		31CF3AA11CAB4D9B00B79041 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 31CF3AA01CAB4D9B00B79041 /* GameScene.sks */; };
 		31CF3AA31CAB4D9B00B79041 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31CF3AA21CAB4D9B00B79041 /* GameScene.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3153E5531CAE904D00223643 /* StartScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartScene.swift; sourceTree = "<group>"; };
 		31CF3A9B1CAB4D9B00B79041 /* Ninja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ninja.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31CF3A9E1CAB4D9B00B79041 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		31CF3AA01CAB4D9B00B79041 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				31CF3AA21CAB4D9B00B79041 /* GameScene.swift */,
 				31CF3ABE1CAB5F1A00B79041 /* GameOverScene.swift */,
 				31CF3AA41CAB4D9B00B79041 /* GameViewController.swift */,
+				3153E5531CAE904D00223643 /* StartScene.swift */,
 				31CF3AA61CAB4D9B00B79041 /* Main.storyboard */,
 				31CF3AAB1CAB4D9B00B79041 /* LaunchScreen.storyboard */,
 				31CF3AAE1CAB4D9B00B79041 /* Info.plist */,
@@ -157,6 +160,7 @@
 				31CF3AA31CAB4D9B00B79041 /* GameScene.swift in Sources */,
 				31CF3AA51CAB4D9B00B79041 /* GameViewController.swift in Sources */,
 				31CF3ABF1CAB5F1A00B79041 /* GameOverScene.swift in Sources */,
+				3153E5541CAE904D00223643 /* StartScene.swift in Sources */,
 				31CF3A9F1CAB4D9B00B79041 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

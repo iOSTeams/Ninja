@@ -22,13 +22,13 @@ class GameViewController: UIViewController {
 
 //        skView.showsFPS = true
 //        skView.showsNodeCount = true
-//        skView.showsPhysics = true
-//        
-        let gameScene = GameScene(size: skView.bounds.size)
-        gameScene.backgroundColor =  SKColor.whiteColor()
-        gameScene.scaleMode = .AspectFill
+        skView.showsPhysics = true
+//
+        let startScene = StartScene(size: skView.bounds.size)
+        startScene.backgroundColor =  SKColor.whiteColor()
+        startScene.scaleMode = .AspectFill
         
-        skView.presentScene(gameScene)
+        skView.presentScene(startScene)
         
     }
     

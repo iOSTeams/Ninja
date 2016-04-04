@@ -6,6 +6,8 @@
 //  Copyright (c) 2016 justinleesf. All rights reserved.
 //
 
+//Memory management?
+
 import SpriteKit
 import AVFoundation
 

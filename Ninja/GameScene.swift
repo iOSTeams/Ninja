@@ -326,24 +326,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstBody.categoryBitMask == ninjaCategory && secondBody.categoryBitMask == floorCategory {
-//            let lossScene = GameOverScene(size: self.size, playerWon: false)
+            let lossScene = GameOverScene(size: self.size, playerWon: false)
             boom.play()
             //****Flash white*****
             //Ask to play again?
             
-//            backgroundMusicPlayer.stop()
-//            removeAllChildren()
-//            removeAllActions()
-//            self.view?.presentScene(lossScene)
+            backgroundMusicPlayer.stop()
+            removeAllChildren()
+            removeAllActions()
+            self.view?.presentScene(lossScene)
             playerScore = 0
         }
         
         if firstBody.categoryBitMask == ninjaCategory && secondBody.categoryBitMask == fireballCategory {
-            //let lossScene = GameOverScene(size: self.size, playerWon: false)
+            let lossScene = GameOverScene(size: self.size, playerWon: false)
             backgroundMusicPlayer.stop()
-//            removeAllChildren()
-//            removeAllActions()
-            //self.view?.presentScene(lossScene)
+            removeAllChildren()
+            removeAllActions()
+            self.view?.presentScene(lossScene)
             playerScore = 0
         }
         

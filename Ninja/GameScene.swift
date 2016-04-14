@@ -31,6 +31,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    //Oh my come on justin!
+    
+    
     let waterballPic:SKSpriteNode = SKSpriteNode(imageNamed: "waterball")
     
     //Speed of waterball
